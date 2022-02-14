@@ -95,8 +95,6 @@ echo "$dialogCMD"
 eval "$dialogCMD" &
 sleep 2
 
-# now start executing installomator labels
-
 progress_index=0
 
 for app in "${apps[@]}"; do
