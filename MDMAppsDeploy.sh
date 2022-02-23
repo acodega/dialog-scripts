@@ -48,13 +48,13 @@ function finalise(){
 }
 
 function appCheck(){
-dialog_command "listitem: $app: wait"
-while [ ! -e "/Applications/$app.app" ]
+dialog_command "listitem: "$(echo "$app" | cut -d ',' -f1)": wait"
+while [ ! -e "$(echo "$app" | cut -d ',' -f2)" ]
 do
     sleep 2
 done
-dialog_command "progresstext: Install of \"$app\" complete"
-dialog_command "listitem: $app: ✅"
+dialog_command "progresstext: Install of \"$(echo "$app" | cut -d ',' -f1)\" complete"
+dialog_command "listitem: $(echo "$app" | cut -d ',' -f1): ✅"
 progress_index=$(( $progress_index + 1 ))
 echo "at item number $progress_index"
 }
