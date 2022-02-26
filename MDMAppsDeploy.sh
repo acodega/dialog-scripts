@@ -9,12 +9,13 @@
 #
 
 # List of apps to process
-# Provide the app exactly how their application name is spelt, ie /Applications/Google Chrome.app
+# Provide the display name as you prefer and the path to the app/file. ex: "Google Chrome,/Applications/Google Chrome.app"
+# Tip: Check for something like print drivers using the pkg receipt, ex: "Konica-Minolta drivers,/var/db/receipts/jp.konicaminolta.print.package.C759.plist"
 apps=(
-    "Google Chrome"
-    "Google Drive"
-    "VLC"
-    "zoom.us"
+    "Google Chrome,/Applications/Google Chrome.app"
+    "Google Drive,/Applications/Google Drive.app"
+    "VLC,/Applications/VLC.app"
+    "zoom.us,/Applications/zoom.us.app"
 )
 
 # Dialog display settings, change as desired
@@ -48,14 +49,14 @@ function finalise(){
 }
 
 function appCheck(){
-dialog_command "listitem: "$(echo "$app" | cut -d ',' -f1)": wait"
+dialog_command "listitem: $(echo "$app" | cut -d ',' -f1): wait"
 while [ ! -e "$(echo "$app" | cut -d ',' -f2)" ]
 do
     sleep 2
 done
 dialog_command "progresstext: Install of \"$(echo "$app" | cut -d ',' -f1)\" complete"
 dialog_command "listitem: $(echo "$app" | cut -d ',' -f1): ✅"
-progress_index=$(( $progress_index + 1 ))
+progress_index=$(( progress_index + 1 ))
 echo "at item number $progress_index"
 }
 
@@ -82,8 +83,7 @@ dialogCMD="$dialogApp -p --title \"$title\" \
 # create the list of apps
 listitems=""
 for app in "${apps[@]}"; do
-	#echo "apps label is $label"
-	listitems="$listitems --listitem \"$app\""
+	listitems="$listitems --listitem \"$(echo "$app" | cut -d ',' -f1)\""
 done
 
 # final command to execute
@@ -97,13 +97,13 @@ sleep 2
 
 progress_index=0
 
-for app in "${apps[@]}"; do
-	step_progress=$(( 1 + $progress_index ))
+(for app in "${apps[@]}"; do
+	step_progress=$(( 1 + progress_index ))
 	dialog_command "progress: $step_progress"
 	appCheck &
 done
 
-wait
+wait)
 
 # all done. close off processing and enable the "Done" button
 finalise
