@@ -28,24 +28,24 @@ dialog_command_file="/var/tmp/dialog.log"
 
 # check we are running as root
 if [[ $(id -u) -ne 0 ]]; then
-	echo "This script should be run as root"
-	exit 1
+  echo "This script should be run as root"
+  exit 1
 fi
 
 # *** functions
 
 # execute a dialog command
 function dialog_command(){
-	echo "$1"
-	echo "$1"  >> $dialog_command_file
+  echo "$1"
+  echo "$1"  >> $dialog_command_file
 }
 
 function finalise(){
-	dialog_command "progresstext: Install of applications complete"
-	dialog_command "progress: complete"
-	dialog_command "button1text: Done"
-	dialog_command "button1: enable" 
-	exit 0
+  dialog_command "progresstext: Install of applications complete"
+  dialog_command "progress: complete"
+  dialog_command "button1text: Done"
+  dialog_command "button1: enable" 
+  exit 0
 }
 
 function appCheck(){
@@ -66,11 +66,11 @@ echo "at item number $progress_index"
 progress_total=${#apps[@]}
 
 # set icon based on whether computer is a desktop or laptop
-hwType=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book")	
+hwType=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book")  
 if [ "$hwType" != "" ]; then
-	icon="SF=laptopcomputer.and.arrow.down,weight=thin,colour1=#51a3ef,colour2=#5154ef"
-	else
-	icon="SF=desktopcomputer.and.arrow.down,weight=thin,colour1=#51a3ef,colour2=#5154ef"
+  icon="SF=laptopcomputer.and.arrow.down,weight=thin,colour1=#51a3ef,colour2=#5154ef"
+  else
+  icon="SF=desktopcomputer.and.arrow.down,weight=thin,colour1=#51a3ef,colour2=#5154ef"
 fi
 
 dialogCMD="$dialogApp -p --title \"$title\" \
@@ -83,7 +83,7 @@ dialogCMD="$dialogApp -p --title \"$title\" \
 # create the list of apps
 listitems=""
 for app in "${apps[@]}"; do
-	listitems="$listitems --listitem \"$(echo "$app" | cut -d ',' -f1)\""
+  listitems="$listitems --listitem '$(echo "$app" | cut -d ',' -f1)'"
 done
 
 # final command to execute
@@ -98,9 +98,9 @@ sleep 2
 progress_index=0
 
 (for app in "${apps[@]}"; do
-	step_progress=$(( 1 + progress_index ))
-	dialog_command "progress: $step_progress"
-	appCheck &
+  step_progress=$(( 1 + progress_index ))
+  dialog_command "progress: $step_progress"
+  appCheck &
 done
 
 wait)
