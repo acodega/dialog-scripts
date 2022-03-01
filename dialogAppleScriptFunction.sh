@@ -1,6 +1,6 @@
-# this function is Bash compatible, insert the function in your script and then place displayAppleScript where you want it to be executed
+# this function is Bash compatible, insert the function in your script and then place dialogAppleScript where you want it to be executed
 
-displayAppleScript(){
+dialogAppleScript(){
   message="A problem was encountered setting up this Mac. Please contact IT."
   currentUser=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ { print $3 }')
   if [[ "$currentUser" != "" ]]; then
