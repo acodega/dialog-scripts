@@ -7,6 +7,8 @@
 # The logging to /var/tmp/deploy.log is useful when getting started but
 # arguably is not needed.
 #
+# The progress bar manipulation could use some improvement.
+#
 # Display a Dialog with a list of applications and indicate when they've been installed
 # Useful when apps are deployed at random, perhaps without local logging.
 # Applies to Mosyle App Catalog installs, VPP app installs, etc.
