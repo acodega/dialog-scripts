@@ -1,3 +1,4 @@
+#!/bin/bash 
 # this function is Bash compatible, insert the function in your script and then place dialogCheck where you want it to be executed
 
 function dialogCheck(){
@@ -19,7 +20,7 @@ function dialogCheck(){
     # Install the package if Team ID validates
     if [ "$expectedDialogTeamID" = "$teamID" ] || [ "$expectedDialogTeamID" = "" ]; then
       /usr/sbin/installer -pkg "$tempDirectory/Dialog.pkg" -target /
-    else
+    # else
       # displayAppleScript # uncomment this if you're using my displayAppleScript function
       # echo "Dialog Team ID verification failed."
       # exit 1 # uncomment this if want script to bail if Dialog install fails
