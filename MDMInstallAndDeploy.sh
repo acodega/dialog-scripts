@@ -46,24 +46,24 @@ dialog_command_file="/var/tmp/dialog.log"
 # *** functions
 
 function dialog_command(){
-	echo "$1"
-	echo "$1"  >> $dialog_command_file
+  echo "$1"
+  echo "$1"  >> $dialog_command_file
 }
 
 function finalise(){
-	dialog_command "icon: SF=checkmark.circle.fill,color1=green"
-	dialog_command "progresstext: Install of apps complete"
-	dialog_command "progress: complete"
-	dialog_command "button1text: Done"
-	dialog_command "button1: enable" 
-	exit 0
+  dialog_command "icon: SF=checkmark.circle.fill,color1=green"
+  dialog_command "progresstext: Install of apps complete"
+  dialog_command "progress: complete"
+  dialog_command "button1text: Done"
+  dialog_command "button1: enable" 
+  exit 0
 }
 
 function appCheck(){
 dialog_command "listitem: '$(echo "$app" | cut -d ',' -f1)': wait"
 while [ ! -e "$(echo "$app" | cut -d ',' -f2)" ]
 do
-    sleep 2
+  sleep 2
 done
 dialog_command "progresstext: Install of \"$(echo "$app" | cut -d ',' -f1)\" complete"
 dialog_command "listitem: $(echo "$app" | cut -d ',' -f1): ✅"
