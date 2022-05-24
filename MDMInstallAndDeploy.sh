@@ -51,6 +51,7 @@ function dialog_command(){
 }
 
 function finalise(){
+	dialog_command "icon: SF=checkmark.circle.fill,color1=green"
 	dialog_command "progresstext: Install of apps complete"
 	dialog_command "progress: complete"
 	dialog_command "button1text: Done"
