@@ -4,6 +4,9 @@
 # Display a Dialog with a list of applications and indicate when they've been installed
 # Useful when apps are deployed at random, without local logging, etc.
 # Useful for Mosyle App Catalog deployments, VPP app deployments, etc.
+#
+# This script doesn't handle installing Dialog and etc. It's meant for you to
+# iterate on. Check out MDMInstallAndDeploy.sh for a complete example.
 # 
 # Requires Dialog v1.9.1 or later https://github.com/bartreardon/Dialog/releases
 #
