@@ -6,9 +6,9 @@ message="Enter the preferred computer name below"
 
 hwType=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book")  
 if [ "$hwType" != "" ]; then
-  icon="SF=laptopcomputer.and.arrow.down"
+  icon="SF=laptopcomputer"
   else
-  icon="SF=desktopcomputer.and.arrow.down"
+  icon="SF=desktopcomputer"
 fi
 
 dialogCMD="$dialogApp -p --title \"$title\" \
