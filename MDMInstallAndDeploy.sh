@@ -113,7 +113,7 @@ function displayDialog(){
       (display dialog "$message" ¬
       buttons {"OK"} ¬
       default button "OK")
-		EndOfScript
+		EndOfScript # This line must use tabs, do not replace with spaces
   fi
 }
 
