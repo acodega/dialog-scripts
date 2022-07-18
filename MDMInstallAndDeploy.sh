@@ -103,6 +103,7 @@ fi
 }
 
 # If something goes wrong and Dialog isn't installed we want to notify the user using AppleScript and exit the script
+ # Line 117 must use tabs, do not replace with spaces
 function displayDialog(){
   message="A problem was encountered setting up this Mac. Please contact IT."
   currentUser=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ { print $3 }')
@@ -113,7 +114,7 @@ function displayDialog(){
       (display dialog "$message" ¬
       buttons {"OK"} ¬
       default button "OK")
-		EndOfScript # This line must use tabs, do not replace with spaces
+		EndOfScript
   fi
 }
 
