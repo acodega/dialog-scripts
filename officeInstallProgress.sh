@@ -105,6 +105,25 @@ function serializeOffice(){
 
 # Begin
 
+setupAssistantProcess=$(pgrep -l "Setup Assistant")
+until [ "$setupAssistantProcess" = "" ]; do
+  echo "$(date "+%a %h %d %H:%M:%S"): Setup Assistant Still Running. PID $setupAssistantProcess."
+  sleep 1
+  setupAssistantProcess=$(pgrep -l "Setup Assistant")
+done
+echo "$(date "+%a %h %d %H:%M:%S"): Out of Setup Assistant" 2>&1 | tee -a /var/tmp/deploy.log
+echo "$(date "+%a %h %d %H:%M:%S"): Logged in user is $(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ { print $3 }')"
+
+finderProcess=$(pgrep -l "Finder")
+until [ "$finderProcess" != "" ]; do
+  echo "$(date "+%a %h %d %H:%M:%S"): Finder process not found. Assuming device is at login screen. PID $finderProcess"
+  sleep 1
+  finderProcess=$(pgrep -l "Finder")
+done
+
+echo "$(date "+%a %h %d %H:%M:%S"): Finder is running"
+echo "$(date "+%a %h %d %H:%M:%S"): Logged in user is $(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ { print $3 }')"
+
 dialogCheck
 
 # initial dialog starting arguments
