@@ -111,7 +111,7 @@ until [ "$setupAssistantProcess" = "" ]; do
   sleep 1
   setupAssistantProcess=$(pgrep -l "Setup Assistant")
 done
-echo "$(date "+%a %h %d %H:%M:%S"): Out of Setup Assistant" 2>&1 | tee -a /var/tmp/deploy.log
+echo "$(date "+%a %h %d %H:%M:%S"): Out of Setup Assistant" 2>&1
 echo "$(date "+%a %h %d %H:%M:%S"): Logged in user is $(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ { print $3 }')"
 
 finderProcess=$(pgrep -l "Finder")
