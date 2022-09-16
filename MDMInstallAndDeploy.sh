@@ -146,12 +146,12 @@ dialogCheck
 # set progress total to the number of apps in the list
 progress_total=${#apps[@]}
 
-# set icon based on whether computer is a desktop or laptop
-hwType=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book")	
-if [ "$hwType" != "" ]; then
-	icon="SF=laptopcomputer"
-	else
-	icon="SF=desktopcomputer"
+# set icon based on whether computer is a desktop or laptop, we'll check to see if the computer has a battery
+# We can't check model names anymore since Mac Studio, MacBook Air M2 and newer report their name as "Mac##,#"
+if system_profiler SPPowerDataType | grep -q Battery; then
+  icon="SF=laptopcomputer"
+  else
+  icon="SF=desktopcomputer"
 fi
 
 echo "$(date "+%a %h %d %H:%M:%S"): Logged in user is $(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ { print $3 }')" 2>&1 | tee -a /var/tmp/deploy.log
@@ -167,7 +167,7 @@ dialogCMD="$dialogApp -p --title \"$title\" \
 # create the list of apps
 listitems=""
 for app in "${apps[@]}"; do
-	listitems="$listitems --listitem '$(echo "$app" | cut -d ',' -f1)'"
+  listitems="$listitems --listitem '$(echo "$app" | cut -d ',' -f1)'"
 done
 
 # final command to execute
@@ -184,9 +184,9 @@ progress_index=0
 
 
 (for app in "${apps[@]}"; do
-	step_progress=$(( 1 + progress_index ))
-	dialog_command "progress: $step_progress"
-	appCheck &
+  step_progress=$(( 1 + progress_index ))
+  dialog_command "progress: $step_progress"
+  appCheck &
 done
 
 wait)
