@@ -72,9 +72,9 @@ echo "at item number $progress_index"
 # set progress total to the number of apps in the list
 progress_total=${#apps[@]}
 
-# set icon based on whether computer is a desktop or laptop
-hwType=$(/usr/sbin/system_profiler SPHardwareDataType | grep "Model Identifier" | grep "Book")  
-if [ "$hwType" != "" ]; then
+# set icon based on whether computer is a desktop or laptop, we'll check to see if the computer has a battery
+# We can't check model names anymore since Mac Studio, MacBook Air M2 and newer report their name as "Mac##,#"
+if system_profiler SPPowerDataType | grep -q Battery; then
   icon="SF=laptopcomputer"
   else
   icon="SF=desktopcomputer"
