@@ -74,7 +74,7 @@ progress_total=${#apps[@]}
 
 # set icon based on whether computer is a desktop or laptop, we'll check to see if the computer has a battery
 # We can't check model names anymore since Mac Studio, MacBook Air M2 and newer report their name as "Mac##,#"
-if system_profiler SPPowerDataType | grep -q Battery; then
+if system_profiler SPPowerDataType | grep -q "Battery Power" ; then
   icon="SF=laptopcomputer"
   else
   icon="SF=desktopcomputer"
