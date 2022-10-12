@@ -20,10 +20,10 @@ function dialogCheck(){
     # Install the package if Team ID validates
     if [ "$expectedDialogTeamID" = "$teamID" ] || [ "$expectedDialogTeamID" = "" ]; then
       /usr/sbin/installer -pkg "$tempDirectory/Dialog.pkg" -target /
-    # else
+    # else # uncomment this else if you want your script to exit now if swiftDialog is not installed
       # displayAppleScript # uncomment this if you're using my displayAppleScript function
       # echo "Dialog Team ID verification failed."
-      # exit 1 # uncomment this if want script to bail if Dialog install fails
+      # exit 1
     fi
     # Remove the temporary working directory when done
     /bin/rm -Rf "$tempDirectory"  
