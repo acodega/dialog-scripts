@@ -1,4 +1,5 @@
 # this function is Bash compatible, insert the function in your script and then place dialogAppleScript where you want it to be executed
+# this is meant to be used when you need to show an error to the user and swiftDialog is not installed
 
 dialogAppleScript(){
   message="A problem was encountered setting up this Mac. Please contact IT."
