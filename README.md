@@ -12,7 +12,7 @@ Display a Dialog with a list of applications and indicate when they've been inst
 
 MDMAppsDeploy checks every two seconds that a file, like `/Applications/Google Chrome.app`, exists. Once it does, the list is updated and shows Google Chromea with a checkmark, indicating it's complete. This means you can have it check for anything, like a printer driver file path, to indicate the install is complete.
 
-##MDMInstallandDeploy.sh
+## MDMInstallandDeploy.sh
 This is an all in one script showing how to use MDMAppsDeploy. The script will wait until the user is logged in, download and install swiftDialog, and then perform the rest of what MDMAppsDeploy does.
 
 Requires swiftDialog 1.11.2 or later.
