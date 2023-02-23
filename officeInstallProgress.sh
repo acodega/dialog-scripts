@@ -105,6 +105,8 @@ function serializeOffice(){
 
 # Begin
 
+chmod 777 "$tempDirectory"
+
 setupAssistantProcess=$(pgrep -l "Setup Assistant")
 until [ "$setupAssistantProcess" = "" ]; do
   echo "$(date "+%a %h %d %H:%M:%S"): Setup Assistant Still Running. PID $setupAssistantProcess."
