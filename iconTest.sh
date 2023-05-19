@@ -1,14 +1,21 @@
 #!/bin/bash
 
-dialogApp="/usr/local/bin/dialog"
+dialogPath="/usr/local/bin/dialog"
+dialogTitle="SF Symbols Test"
+dialogMessage="How does this icon look?"
+dialogIcon="SF=laptopcomputer"
+dialogOverlayIcon="SF=arrow.down.circle.fill,palette=white,black,none,bgcolor=none"
 
-title="SF Symbols Test"
-message="How does this icon look?"
+dialogOptions=(
+--title "$dialogTitle"
+--icon "$dialogIcon"
+--overlayicon "$dialogOverlayIcon"
+--moveable
+--ontop
+)
 
-dialogCMD="$dialogApp -p --title \"$title\" \
---icon SF=laptopcomputer \
---overlayicon SF=arrow.down.circle.fill,palette=white,black,none,bgcolor=none \
---message \"$message\" \
---moveable"
+dialogContent=(
+--message "$dialogMessage"
+)
 
-eval "$dialogCMD"
+"$dialogPath" "${dialogOptions[@]}" "${dialogContent[@]}"
