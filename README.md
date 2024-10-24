@@ -1,4 +1,4 @@
-# dialog-scripts
+# swiftDialog-scripts
 Scripts I've written to use with the awesome swiftDialog app https://github.com/bartreardon/swiftDialog
 
 Most scripts in this repo have comment code to describe their use. 
